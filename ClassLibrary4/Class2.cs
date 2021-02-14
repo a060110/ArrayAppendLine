@@ -9,16 +9,13 @@ namespace ClassLibrary4
 {
     public class SentenceClass1
     {
-        public static string SentenceMethod1(string p1) 
+        public static string SentenceMethod1(string p1)
         {
-            string[] Sentence = new string[3];
-            Sentence[0] = "我叫賴群凱";
-            Sentence[1] = "正在學C#";
-            Sentence[2] = "請多多指教";
+            string[] Sentence = p1.Split('\r', '\n');
             var AllSentence = new System.Text.StringBuilder();
             for (int i = 0; i <=2; i++)
             {
-                AllSentence.AppendLine(Sentence[i]);
+                AllSentence.AppendLine(Sentence[i]+"<br>");
             }
             return AllSentence.ToString();
         }
@@ -29,8 +26,8 @@ namespace ClassLibrary4
         [Test]
         public static void TestMethod()
         {
-            string expect = "我叫賴群凱\r\n正在學C#\r\n請多多指教\r\n";
-            Assert.AreEqual(expect, SentenceClass1.SentenceMethod1());
+            string expect = "我叫賴群凱<br>\r\n正在學C#<br>\r\n請多多指教<br>\r\n";
+            Assert.AreEqual(expect, SentenceClass1.SentenceMethod1("我叫賴群凱\r\n正在學C#\r\n請多多指教"));
         }
     }
 }
